@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import { User, Lock, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function LoginPage() {
@@ -10,6 +10,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
     const router = useRouter();
 
     const handleLogin = async (e: React.FormEvent) => {
@@ -40,91 +41,93 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center relative overflow-hidden bg-black selection:bg-cyan-500/30">
-            {/* Animated Background Grid */}
-            <div className="absolute inset-0 bg-grid opacity-20" />
+        <main className="flex min-h-screen flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-800">
+            {/* Soft Background Blurs */}
+            <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-500/30 blur-[100px]" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/30 blur-[100px]" />
 
-            {/* Radial Gradient Vignette */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] pointer-events-none" />
-
-            <div className="z-10 w-full max-w-md px-6">
-                <div className="glass-panel rounded-2xl p-8 md:p-10 relative overflow-hidden border border-white/10 shadow-2xl backdrop-blur-xl bg-black/40">
-
-                    {/* Decorative Top Line */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
-
-                    {/* Header */}
-                    <div className="text-center mb-8 space-y-3">
-                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-zinc-900/50 border border-white/10 mb-2 shadow-[0_0_30px_rgba(0,243,255,0.15)] group">
-                            <ShieldCheck className="w-7 h-7 text-cyan-400 group-hover:scale-110 transition-transform duration-500" />
-                        </div>
-                        <div>
-                            <h1 className="text-2xl font-bold tracking-tight text-white">
-                                Welcome Back
-                            </h1>
-                            <p className="text-sm text-zinc-400 mt-1">
-                                Enter your credentials to access the control panel.
-                            </p>
-                        </div>
+            <div className="z-10 w-full max-w-[380px] px-4">
+                <div className="relative">
+                    {/* User Icon Circle (Top Center) */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full bg-[#0f172a] flex items-center justify-center border-4 border-white/10 shadow-xl z-20">
+                        <User className="w-10 h-10 text-white stroke-[1.5]" />
                     </div>
 
-                    {/* Form */}
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div className="space-y-1.5">
-                            <label className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase ml-1">
-                                Username
-                            </label>
-                            <div className="relative group">
+                    {/* Main Glass Card */}
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 pt-16 shadow-2xl relative z-10">
+
+                        <form onSubmit={handleLogin} className="space-y-4 mt-4">
+                            {/* Username Input */}
+                            <div className="flex items-center bg-[#1e293b]/80 rounded-sm overflow-hidden border border-white/5 group focus-within:ring-1 focus-within:ring-blue-400/50 transition-all">
+                                <div className="w-12 h-12 flex items-center justify-center bg-[#0f172a]/50 border-r border-white/5">
+                                    <User className="w-5 h-5 text-white/70" />
+                                </div>
                                 <input
                                     type="text"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    className="w-full bg-zinc-900/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300 font-medium"
-                                    placeholder="Enter username"
+                                    className="flex-1 bg-transparent px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none"
+                                    placeholder="Username"
                                     autoFocus
                                 />
-                                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/20 to-magenta-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10 blur-sm" />
                             </div>
-                        </div>
 
-                        <div className="space-y-1.5">
-                            <label className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase ml-1">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-zinc-900/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300 font-medium tracking-widest"
-                                placeholder="••••••••"
-                            />
-                        </div>
-
-                        {error && (
-                            <div className="flex items-center justify-center gap-2 p-2 rounded-md bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wide animate-in fade-in slide-in-from-top-1">
-                                <Lock className="w-3 h-3" />
-                                {error}
+                            {/* Password Input */}
+                            <div className="flex items-center bg-[#1e293b]/80 rounded-sm overflow-hidden border border-white/5 group focus-within:ring-1 focus-within:ring-blue-400/50 transition-all">
+                                <div className="w-12 h-12 flex items-center justify-center bg-[#0f172a]/50 border-r border-white/5">
+                                    <Lock className="w-5 h-5 text-white/70" />
+                                </div>
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="flex-1 bg-transparent px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none"
+                                    placeholder="Password"
+                                />
                             </div>
-                        )}
 
+                            {/* Options Row */}
+                            <div className="flex items-center justify-between text-xs text-white/60 mt-2">
+                                <label className="flex items-center gap-2 cursor-pointer hover:text-white transition-colors">
+                                    <div className={cn(
+                                        "w-4 h-4 rounded-sm border border-white/30 flex items-center justify-center transition-colors",
+                                        rememberMe ? "bg-blue-500 border-blue-500" : "bg-transparent"
+                                    )}>
+                                        {rememberMe && <Check className="w-3 h-3 text-white" />}
+                                    </div>
+                                    <input
+                                        type="checkbox"
+                                        className="hidden"
+                                        checked={rememberMe}
+                                        onChange={() => setRememberMe(!rememberMe)}
+                                    />
+                                    Remember me
+                                </label>
+                                <button type="button" className="hover:text-white transition-colors italic">
+                                    Forgot Password?
+                                </button>
+                            </div>
+
+                            {error && (
+                                <div className="text-center text-xs font-bold text-red-300 bg-red-500/20 py-2 rounded-md animate-pulse">
+                                    {error}
+                                </div>
+                            )}
+                        </form>
+                    </div>
+
+                    {/* Login Button (Floating Bottom) */}
+                    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[80%] z-20">
                         <button
-                            type="submit"
+                            onClick={handleLogin}
                             disabled={loading}
                             className={cn(
-                                "w-full group relative flex items-center justify-center gap-2 bg-white text-black hover:bg-cyan-50 font-bold py-3 rounded-lg text-sm transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(0,243,255,0.3)] mt-2",
+                                "w-full bg-gradient-to-r from-white/20 to-white/10 hover:from-white/30 hover:to-white/20 backdrop-blur-md border border-white/20 text-white font-bold tracking-widest py-4 rounded-2xl shadow-lg transition-all duration-300 uppercase text-sm",
                                 loading && "opacity-70 cursor-not-allowed"
                             )}
                         >
-                            <span>{loading ? "Authenticating..." : "Sign In"}</span>
-                            {!loading && <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />}
+                            {loading ? "Verifying..." : "Login"}
                         </button>
-                    </form>
-
-                    {/* Footer */}
-                    <div className="mt-8 text-center">
-                        <p className="text-[10px] text-zinc-600 uppercase tracking-widest">
-                            Secure Connection • ESP32 Controller
-                        </p>
                     </div>
                 </div>
             </div>
