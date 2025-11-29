@@ -43,6 +43,16 @@ A futuristic, high-performance IoT dashboard designed to interface with ESP32 mi
     ```
     Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
+### 🔐 Authentication
+The dashboard is protected by a secure login system. Default credentials:
+
+| Role | Username | Password |
+| :--- | :--- | :--- |
+| **Principal** | `principal` | `admin` |
+| **Admin** | `admin` | `83828099` |
+| **Guest** | `guest` | `guest123` |
+| **Demo** | `demo` | `demo123` |
+
 ### ESP32 Setup
 
 1.  Open `esp32_code.ino` in Arduino IDE.
