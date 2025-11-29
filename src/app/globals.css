@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+}
+
+.text-glow-magenta {
+  text-shadow: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta);
+}
+
+/* 3D Button Utilities */
+.btn-3d {
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  box-shadow:
+    0 10px 0 #1a1a1a,
+    /* Side/Depth */
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    /* Drop Shadow */
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  /* Top Highlight */
+}
+
+.btn-3d:active,
+.btn-3d.active {
+  transform: translateY(10px);
+  box-shadow:
+    0 0 0 #1a1a1a,
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-3d-cyan.active {
+  box-shadow:
+    0 0 0 #0891b2,
+    0 0 30px var(--neon-cyan),
+    inset 0 0 20px var(--neon-cyan);
+  background: rgba(0, 243, 255, 0.1);
+  border-color: var(--neon-cyan);
+}
+
+.btn-3d-magenta.active {
+  box-shadow:
+    0 0 0 #c026d3,
+    0 0 30px var(--neon-magenta),
+    inset 0 0 20px var(--neon-magenta);
+  background: rgba(255, 0, 255, 0.1);
+  border-color: var(--neon-magenta);
+}
+}
+
+/* Animated Grid Background */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 50px 50px;
+  }
+}
