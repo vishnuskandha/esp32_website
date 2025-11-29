@@ -92,37 +92,45 @@ export default function Home() {
                 <LogOut className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
 
-            <div className="z-10 flex flex-col items-center w-full max-w-4xl px-4 pt-20 pb-32">
-                {/* Header */}
-                <div className="text-center mb-16 space-y-4">
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+            <div className="z-10 flex flex-col items-center w-full max-w-6xl px-4 pt-20 pb-32">
+                {/* Header - Simplified for Visibility */}
+                <div className="text-center mb-24 space-y-4">
+                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
                         ESP32<span className="text-cyan-400">.</span>CONTROL
                     </h1>
-                    <div className="flex items-center justify-center gap-4 text-[10px] md:text-xs font-mono tracking-[0.3em] text-zinc-500 uppercase">
+                    <div className="flex items-center justify-center gap-4 text-xs font-mono tracking-[0.3em] text-zinc-400 uppercase">
                         <span>System v2.0</span>
-                        <span className="w-1 h-1 bg-zinc-700 rounded-full" />
+                        <span className="w-1.5 h-1.5 bg-zinc-600 rounded-full" />
                         <span>Secure Connection</span>
                     </div>
                 </div>
 
-                {/* Control Panel */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 w-full place-items-center mb-12">
-                    <StatusIndicator
-                        label="System Alpha"
-                        active={state.button1}
-                        color="cyan"
-                        onClick={() => toggleButton("button1")}
-                    />
-                    <StatusIndicator
-                        label="System Beta"
-                        active={state.button2}
-                        color="magenta"
-                        onClick={() => toggleButton("button2")}
-                    />
+                {/* Control Panel - Forced Side-by-Side Layout */}
+                <div className="flex flex-col md:flex-row items-center justify-between w-full gap-12 md:gap-0 mb-20 px-8 md:px-20">
+                    <div className="scale-125">
+                        <StatusIndicator
+                            label="System Alpha"
+                            active={state.button1}
+                            color="cyan"
+                            onClick={() => toggleButton("button1")}
+                        />
+                    </div>
+
+                    {/* Central Divider/Decoration (Optional) */}
+                    <div className="hidden md:block w-px h-32 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+
+                    <div className="scale-125">
+                        <StatusIndicator
+                            label="System Beta"
+                            active={state.button2}
+                            color="magenta"
+                            onClick={() => toggleButton("button2")}
+                        />
+                    </div>
                 </div>
 
                 {/* Activity Log */}
-                <div className="w-full max-w-2xl">
+                <div className="w-full max-w-3xl">
                     <ActivityLog logs={state.logs} />
                 </div>
             </div>
