@@ -1,4 +1,13 @@
 #include <HTTPClient.h>
+#include <WiFi.h>
+
+// ==========================================
+// CONFIGURATION
+// ==========================================
+const char *ssid = "ACT-ai_103775403693";
+const char *password = "83828099";
+const char *serverUrl = "https://esp32-website-kappa.vercel.app/api/button";
+
 // Pin Definitions
 const int BUTTON_1_PIN = 4; // GPIO 4
 const int BUTTON_2_PIN = 5; // GPIO 5
