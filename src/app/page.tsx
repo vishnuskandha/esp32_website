@@ -82,22 +82,22 @@ export default function Home() {
             {/* Top Gradient Line */}
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
 
-            {/* Logout Button */}
+            {/* Logout Button - Fixed Position & High Z-Index */}
             <button
                 onClick={handleLogout}
-                className="absolute top-6 right-6 flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 group z-50"
+                className="fixed top-6 right-6 flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 group z-[100] shadow-lg"
             >
-                <span>LOGOUT</span>
-                <LogOut className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                <span className="tracking-widest font-bold">LOGOUT</span>
+                <LogOut className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
 
-            <div className="z-10 flex flex-col items-center w-full max-w-4xl px-4">
+            <div className="z-10 flex flex-col items-center w-full max-w-4xl px-4 pt-20 pb-32">
                 {/* Header */}
-                <div className="text-center mb-20 space-y-4">
-                    <h1 className="text-6xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                <div className="text-center mb-16 space-y-4">
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                         ESP32<span className="text-cyan-400">.</span>CONTROL
                     </h1>
-                    <div className="flex items-center justify-center gap-4 text-xs font-mono tracking-[0.3em] text-zinc-500 uppercase">
+                    <div className="flex items-center justify-center gap-4 text-[10px] md:text-xs font-mono tracking-[0.3em] text-zinc-500 uppercase">
                         <span>System v2.0</span>
                         <span className="w-1 h-1 bg-zinc-700 rounded-full" />
                         <span>Secure Connection</span>
@@ -105,7 +105,7 @@ export default function Home() {
                 </div>
 
                 {/* Control Panel */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 w-full place-items-center mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 w-full place-items-center mb-12">
                     <StatusIndicator
                         label="System Alpha"
                         active={state.button1}
@@ -121,18 +121,20 @@ export default function Home() {
                 </div>
 
                 {/* Activity Log */}
-                <ActivityLog logs={state.logs} />
+                <div className="w-full max-w-2xl">
+                    <ActivityLog logs={state.logs} />
+                </div>
             </div>
 
-            {/* Footer Status */}
-            <div className="absolute bottom-8 flex gap-8 text-[10px] font-mono tracking-widest text-zinc-700 uppercase">
+            {/* Footer Status - Fixed Bottom & High Contrast */}
+            <div className="fixed bottom-0 w-full bg-black/80 backdrop-blur-sm border-t border-white/5 py-3 flex justify-center gap-8 text-[10px] font-mono tracking-widest text-zinc-500 uppercase z-40">
                 <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                    Server Online
+                    <span className="text-zinc-400">Server Online</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full" />
-                    Latency: 24ms
+                    <span className="text-zinc-400">Latency: 24ms</span>
                 </div>
             </div>
         </main>
