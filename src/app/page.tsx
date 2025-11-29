@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { LogOut } from "lucide-react";
 import { StatusIndicator } from "@/components/StatusIndicator";
 import { ActivityLog } from "@/components/ActivityLog";
 import { LogEntry } from "@/lib/store";
@@ -17,6 +19,7 @@ export default function Home() {
         button2: false,
         logs: [],
     });
+    const router = useRouter();
 
     useEffect(() => {
         const interval = setInterval(async () => {
@@ -61,6 +64,16 @@ export default function Home() {
         }
     };
 
+    const handleLogout = async () => {
+        try {
+            await fetch("/api/auth/logout", { method: "POST" });
+            router.push("/login");
+            router.refresh();
+        } catch (error) {
+            console.error("Logout failed", error);
+        }
+    };
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-center relative overflow-hidden bg-grid">
             {/* Background Vignette */}
@@ -68,6 +81,15 @@ export default function Home() {
 
             {/* Top Gradient Line */}
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
+
+            {/* Logout Button */}
+            <button
+                onClick={handleLogout}
+                className="absolute top-6 right-6 flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 group z-50"
+            >
+                <span>LOGOUT</span>
+                <LogOut className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+            </button>
 
             <div className="z-10 flex flex-col items-center w-full max-w-4xl px-4">
                 {/* Header */}
