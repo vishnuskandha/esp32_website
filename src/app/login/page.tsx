@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ShieldCheck, Cpu } from "lucide-react";
+import { Lock, ArrowRight, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function LoginPage() {
@@ -40,101 +40,91 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-black selection:bg-cyan-500/30 p-4 md:p-0">
-            {/* Animated Background Grid (Global) */}
-            <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+        <main className="flex min-h-screen flex-col items-center justify-center relative overflow-hidden bg-black selection:bg-cyan-500/30">
+            {/* Animated Background Grid */}
+            <div className="absolute inset-0 bg-grid opacity-20" />
 
-            <div className="z-10 w-full max-w-5xl h-full md:h-[600px] glass-panel rounded-3xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-xl bg-black/40 flex flex-col md:flex-row">
+            {/* Radial Gradient Vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] pointer-events-none" />
 
-                {/* LEFT SIDE: Branding & Visuals */}
-                <div className="relative w-full md:w-1/2 bg-zinc-900/50 p-10 md:p-16 flex flex-col justify-between overflow-hidden">
-                    {/* Background Effects */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,243,255,0.15),transparent_50%)]" />
-                    <div className="absolute bottom-0 right-0 w-64 h-64 bg-magenta-500/10 blur-[100px] rounded-full" />
+            <div className="z-10 w-full max-w-md px-6">
+                <div className="glass-panel rounded-2xl p-8 md:p-10 relative overflow-hidden border border-white/10 shadow-2xl backdrop-blur-xl bg-black/40">
 
-                    {/* Logo/Icon */}
-                    <div className="relative z-10">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-black/50 border border-white/10 mb-6 shadow-[0_0_30px_rgba(0,243,255,0.2)]">
-                            <Cpu className="w-8 h-8 text-cyan-400" />
+                    {/* Decorative Top Line */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
+
+                    {/* Header */}
+                    <div className="text-center mb-8 space-y-3">
+                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-zinc-900/50 border border-white/10 mb-2 shadow-[0_0_30px_rgba(0,243,255,0.15)] group">
+                            <ShieldCheck className="w-7 h-7 text-cyan-400 group-hover:scale-110 transition-transform duration-500" />
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-white uppercase leading-tight">
-                            Control <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-magenta-500">
-                                Center
-                            </span>
-                        </h1>
-                    </div>
-
-                    {/* Stats / Info */}
-                    <div className="relative z-10 space-y-4">
-                        <div className="flex items-center gap-4 text-zinc-400">
-                            <div className="w-12 h-[1px] bg-zinc-700" />
-                            <span className="text-xs font-mono tracking-[0.2em] uppercase">System v2.0</span>
-                        </div>
-                        <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
-                            Secure access point for ESP32 IoT infrastructure. Authorized personnel only.
-                        </p>
-                    </div>
-                </div>
-
-                {/* RIGHT SIDE: Login Form */}
-                <div className="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-black/20 relative">
-                    {/* Decorative Line */}
-                    <div className="absolute left-0 top-10 bottom-10 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent hidden md:block" />
-
-                    <div className="max-w-sm mx-auto w-full space-y-8">
                         <div>
-                            <h2 className="text-2xl font-bold text-white tracking-tight">Sign In</h2>
-                            <p className="text-sm text-zinc-400 mt-2">Enter your credentials to continue.</p>
+                            <h1 className="text-2xl font-bold tracking-tight text-white">
+                                Welcome Back
+                            </h1>
+                            <p className="text-sm text-zinc-400 mt-1">
+                                Enter your credentials to access the control panel.
+                            </p>
                         </div>
+                    </div>
 
-                        <form onSubmit={handleLogin} className="space-y-5">
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-semibold tracking-wide text-zinc-500 uppercase ml-1">
-                                    Username
-                                </label>
+                    {/* Form */}
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="space-y-1.5">
+                            <label className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase ml-1">
+                                Username
+                            </label>
+                            <div className="relative group">
                                 <input
                                     type="text"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-3.5 text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300 font-medium"
-                                    placeholder="admin"
+                                    className="w-full bg-zinc-900/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300 font-medium"
+                                    placeholder="Enter username"
                                     autoFocus
                                 />
+                                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/20 to-magenta-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10 blur-sm" />
                             </div>
+                        </div>
 
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-semibold tracking-wide text-zinc-500 uppercase ml-1">
-                                    Password
-                                </label>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-3.5 text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300 font-medium tracking-widest"
-                                    placeholder="••••••••"
-                                />
+                        <div className="space-y-1.5">
+                            <label className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase ml-1">
+                                Password
+                            </label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full bg-zinc-900/50 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300 font-medium tracking-widest"
+                                placeholder="••••••••"
+                            />
+                        </div>
+
+                        {error && (
+                            <div className="flex items-center justify-center gap-2 p-2 rounded-md bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wide animate-in fade-in slide-in-from-top-1">
+                                <Lock className="w-3 h-3" />
+                                {error}
                             </div>
+                        )}
 
-                            {error && (
-                                <div className="flex items-center gap-3 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-medium animate-in fade-in slide-in-from-left-2">
-                                    <ShieldCheck className="w-4 h-4 shrink-0" />
-                                    {error}
-                                </div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className={cn(
+                                "w-full group relative flex items-center justify-center gap-2 bg-white text-black hover:bg-cyan-50 font-bold py-3 rounded-lg text-sm transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(0,243,255,0.3)] mt-2",
+                                loading && "opacity-70 cursor-not-allowed"
                             )}
+                        >
+                            <span>{loading ? "Authenticating..." : "Sign In"}</span>
+                            {!loading && <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />}
+                        </button>
+                    </form>
 
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className={cn(
-                                    "w-full group relative flex items-center justify-center gap-2 bg-white text-black hover:bg-cyan-50 font-bold py-3.5 rounded-xl transition-all duration-300 mt-2",
-                                    loading && "opacity-70 cursor-not-allowed"
-                                )}
-                            >
-                                <span>{loading ? "Verifying..." : "Access Dashboard"}</span>
-                                {!loading && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
-                            </button>
-                        </form>
+                    {/* Footer */}
+                    <div className="mt-8 text-center">
+                        <p className="text-[10px] text-zinc-600 uppercase tracking-widest">
+                            Secure Connection • ESP32 Controller
+                        </p>
                     </div>
                 </div>
             </div>
