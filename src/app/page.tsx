@@ -85,7 +85,8 @@ export default function Home() {
             {/* Logout Button - Fixed Position & High Z-Index */}
             <button
                 onClick={handleLogout}
-                className="fixed top-6 right-6 flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 group z-[100] shadow-lg"
+                style={{ position: 'fixed', top: '1.5rem', right: '1.5rem' }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs font-mono text-zinc-400 hover:text-white hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 group z-[100] shadow-lg"
             >
                 <span className="tracking-widest font-bold">LOGOUT</span>
                 <LogOut className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -127,7 +128,10 @@ export default function Home() {
             </div>
 
             {/* Footer Status - Fixed Bottom & High Contrast */}
-            <div className="fixed bottom-0 w-full bg-black/80 backdrop-blur-sm border-t border-white/5 py-3 px-6 flex justify-start gap-8 text-[10px] font-mono tracking-widest text-zinc-500 uppercase z-40">
+            <div
+                style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}
+                className="bg-black/80 backdrop-blur-sm border-t border-white/5 py-3 px-6 flex justify-start gap-8 text-[10px] font-mono tracking-widest text-zinc-500 uppercase z-40"
+            >
                 <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                     <span className="text-zinc-400">Server Online</span>
