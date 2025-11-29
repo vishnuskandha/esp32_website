@@ -1,15 +1,17 @@
-#include <WiFi.h>
 #include <HTTPClient.h>
+#include <WiFi.h>
+
 
 // ==========================================
 // CONFIGURATION
 // ==========================================
-const char* ssid = "YOUR_WIFI_SSID";
-const char* password = "YOUR_WIFI_PASSWORD";
+const char *ssid = "YOUR_WIFI_SSID";
+const char *password = "YOUR_WIFI_PASSWORD";
 
-// Replace with your Vercel deployment URL (e.g., https://your-project.vercel.app)
-// For local testing, use your computer's IP (e.g., http://192.168.1.100:3000)
-const char* serverUrl = "http://YOUR_SERVER_URL/api/button";
+// Replace with your Vercel deployment URL (e.g.,
+// https://your-project.vercel.app) For local testing, use your computer's IP
+// (e.g., http://192.168.1.100:3000)
+const char *serverUrl = "https://esp32-website-kappa.vercel.app/api/button";
 
 // Pin Definitions
 const int BUTTON_1_PIN = 4; // GPIO 4
@@ -48,12 +50,15 @@ void loop() {
   bool currentButton2State = !digitalRead(BUTTON_2_PIN);
 
   // Check for change
-  if (currentButton1State != lastButton1State || currentButton2State != lastButton2State) {
+  if (currentButton1State != lastButton1State ||
+      currentButton2State != lastButton2State) {
     // Simple debounce
     if ((millis() - lastDebounceTime) > debounceDelay) {
-      
-      Serial.print("Button 1: "); Serial.print(currentButton1State);
-      Serial.print(" | Button 2: "); Serial.println(currentButton2State);
+
+      Serial.print("Button 1: ");
+      Serial.print(currentButton1State);
+      Serial.print(" | Button 2: ");
+      Serial.println(currentButton2State);
 
       sendButtonState(currentButton1State, currentButton2State);
 
@@ -67,13 +72,14 @@ void loop() {
 void sendButtonState(bool btn1, bool btn2) {
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
-    
+
     http.begin(serverUrl);
     http.addHeader("Content-Type", "application/json");
 
     // Create JSON payload
-    String jsonPayload = "{ \"button1\": " + String(btn1 ? "true" : "false") + 
-                         ", \"button2\": " + String(btn2 ? "true" : "false") + " }";
+    String jsonPayload = "{ \"button1\": " + String(btn1 ? "true" : "false") +
+                         ", \"button2\": " + String(btn2 ? "true" : "false") +
+                         " }";
 
     int httpResponseCode = http.POST(jsonPayload);
 
