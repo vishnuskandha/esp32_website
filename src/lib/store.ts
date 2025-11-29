@@ -5,7 +5,7 @@ export interface LogEntry {
     type: "info" | "success" | "warning";
 }
 
-export let buttonState = {
+export const buttonState = {
     button1: false,
     button2: false,
     lastUpdated: Date.now(),
