@@ -127,7 +127,7 @@ export default function Home() {
             </div>
 
             {/* Footer Status - Fixed Bottom & High Contrast */}
-            <div className="fixed bottom-0 w-full bg-black/80 backdrop-blur-sm border-t border-white/5 py-3 flex justify-center gap-8 text-[10px] font-mono tracking-widest text-zinc-500 uppercase z-40">
+            <div className="fixed bottom-0 w-full bg-black/80 backdrop-blur-sm border-t border-white/5 py-3 px-6 flex justify-start gap-8 text-[10px] font-mono tracking-widest text-zinc-500 uppercase z-40">
                 <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                     <span className="text-zinc-400">Server Online</span>
