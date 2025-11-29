@@ -1,18 +1,4 @@
 #include <HTTPClient.h>
-#include <WiFi.h>
-
-
-// ==========================================
-// CONFIGURATION
-// ==========================================
-const char *ssid = "YOUR_WIFI_SSID";
-const char *password = "YOUR_WIFI_PASSWORD";
-
-// Replace with your Vercel deployment URL (e.g.,
-// https://your-project.vercel.app) For local testing, use your computer's IP
-// (e.g., http://192.168.1.100:3000)
-const char *serverUrl = "https://esp32-website-kappa.vercel.app/api/button";
-
 // Pin Definitions
 const int BUTTON_1_PIN = 4; // GPIO 4
 const int BUTTON_2_PIN = 5; // GPIO 5
