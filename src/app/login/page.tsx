@@ -110,7 +110,7 @@ export default function LoginPage() {
                                 <input
                                     type="password"
                                     value={password}
-                                    onChange={(e) => setsetPassword(e.target.value)}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-3.5 text-white placeholder-zinc-700 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300 font-medium tracking-widest"
                                     placeholder="••••••••"
                                 />
