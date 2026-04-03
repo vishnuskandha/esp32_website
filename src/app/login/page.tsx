@@ -33,7 +33,7 @@ export default function LoginPage() {
             } else {
                 setError(data.message || "Access Denied");
             }
-        } catch (err) {
+        } catch {
             setError("System Error");
         } finally {
             setLoading(false);
