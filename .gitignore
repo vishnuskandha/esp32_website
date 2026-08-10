@@ -19,6 +19,10 @@
 
 # production
 /build
+/dist
+
+# platformio
+.pio/
 
 # misc
 .DS_Store

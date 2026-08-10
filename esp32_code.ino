@@ -5,9 +5,9 @@
 // ==========================================
 // CONFIGURATION
 // ==========================================
-// WiFi Credentials
-const char *ssid = "ACT-ai_103775403693";
-const char *password = "83828099";
+// WiFi credentials - copy `secrets.example.h` to `secrets.h`
+// and set your own SSID and password.
+#include "secrets.h"
 
 // Server URL (Vercel Production)
 const char *serverUrl = "https://esp32-website-kappa.vercel.app/api/button";

@@ -1,8 +1,11 @@
+// Demo credentials - CHANGE THESE before deploying publicly.
+// Never reuse personal passwords; manage credentials via
+// environment variables for production deployments.
 export const users = {
-    "admin": "83828099",
+    "admin": "admin123",
     "guest": "guest123",
     "demo": "demo123",
-    "principal": "admin"
+    "principal": "principal123"
 };
 
 export type Username = keyof typeof users;
