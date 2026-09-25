@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Website Control Center
+
+</div>
 
 
 <!-- README polish: repository metadata badges -->
